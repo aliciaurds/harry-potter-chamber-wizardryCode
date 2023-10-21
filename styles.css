@@ -8,7 +8,7 @@ body {
 #start-screen {
   background-color: darkgray;
   width: 1000px;
-  height: 500px;
+  height: 600px;
   overflow: hidden;
   position: relative;
   user-select: none;
@@ -49,8 +49,8 @@ body {
 
 #game-box {
   background-color: darkgray;
-  width: 1000px;
-  height: 500px;
+  width: 1200px;
+  height: 700px;
   overflow: hidden;
   position: relative;
   user-select: none;
@@ -62,7 +62,7 @@ body {
 #gameover-screen {
   background-color: darkgray;
   width: 1000px;
-  height: 500px;
+  height: 600px;
   overflow: hidden;
   position: relative;
   user-select: none;
@@ -71,8 +71,8 @@ body {
   background-size: cover;
 }
 #gameover-screen p{
-    margin-top: 8px;
-   color: gray;
+    margin-top: 45px;
+  color: gray;
    text-shadow: 0px 4px 4px #000000;
    font-size: 30px;
    
@@ -85,8 +85,8 @@ body {
 
 }
 #game-screen, #gameover-screen{
-    display: none;
-  }
-  
-  
+  display: none;
+}
+
+
 

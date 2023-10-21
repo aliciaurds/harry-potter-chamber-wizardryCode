@@ -1,26 +1,34 @@
 class Game {
-    constructor(){
-        this.player = new Player()
+  constructor() {
+    this.player = new Player();
 
+    this.enemiesArr = [];
 
+    this.timer = 0;
+  }
 
+  enemiesAppear = () => {
+    if (this.timer % 180 === 0) {
+      let randomPosition = Math.random() * 500;
 
+      let voldemort = new Enemies("voldemort", randomPosition);
+      this.enemiesArr.push(voldemort);
 
-
-
-        this.timer = 0;
-
+      let umbridge = new Enemies("umbridge", randomPosition + 500);
+      this.enemiesArr.push(umbridge);
     }
+  };
 
+  //Iniciar juego
+  gameLoop = () => {
+    this.player.gravityEffect();
 
+    this.enemiesArr.forEach((eachEnemy) => {
+      eachEnemy.autoMovement();
+    });
+    this.enemiesAppear();
 
-
-   //Iniciar juego
-    gameLoop = ()=>{
-        this.timer++
-
-
-
-        requestAnimationFrame(this.gameLoop)
-    }
+    this.timer++; //añadir esto siempre mejor antes de la recursion
+    requestAnimationFrame(this.gameLoop);
+  };
 }

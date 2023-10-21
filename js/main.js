@@ -10,15 +10,19 @@ let gameObj;
 
 // * STATE MANAGEMENT FUNCTIONS
 const startGame = () => {
-    initialScreenNode.style.display = "none";
-    gameScreenNode.style.display = "flex";
-  
-    
-    gameObj = new Game(); //creando objeto 
-    console.log(gameObj);
-  
-    gameObj.gameLoop(); //ejecutando la recursion 
-  };
-  
-  // * EVENT LISTENERS
+  initialScreenNode.style.display = "none";
+  gameScreenNode.style.display = "flex";
+
+  gameObj = new Game(); //creando objeto
+  console.log(gameObj);
+
+  gameObj.gameLoop(); //ejecutando la recursion
+};
+
+// * EVENT LISTENERS
 startBtnNode.addEventListener("click", startGame);
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Space") {
+    gameObj.player.jump(); //accedo al objeto, dentro de el al jugador y luego la accion
+  }
+});
