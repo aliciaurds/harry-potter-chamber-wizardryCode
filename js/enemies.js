@@ -4,13 +4,13 @@ class Enemies {
     if(type === "voldemort"){
         this.node.src = "./images/voldemort.png";
     }else{
-        this.node.src = "./images/umbridge.png";
+        this.node.src = "./images/umbridge1.png";
     }
     
     gameBoxNode.append(this.node);
 
-    this.w = 80;
-    this.h = 100;
+    this.w = 60;
+    this.h = 80;
     this.x = 1100;
     this.y = yPosition
 

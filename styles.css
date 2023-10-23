@@ -5,34 +5,70 @@ body {
   font-family: "Harry Potter", sans-serif;
 }
 
-#start-screen {
-  background-color: darkgray;
-  width: 1000px;
-  height: 600px;
+#play,#stop{
+	display:absolute;
+  padding-top: 10px;
+	border: none;
+	background:none;
+  cursor: pointer;
+  } 
+iframe{
+  display: none;
+}
+
+#start-screen,
+#game-box,
+#gameover-screen, #game-screen {
+  
+  width: 80vw;
+  height: 80vh;        
   overflow: hidden;
   position: relative;
   user-select: none;
-  background-image: url("./images/background-start.jpg");
   background-position: center;
   background-size: cover;
 }
+
+#start-screen {
+  background-image: url("./images/background-start.jpg");
+}
+#game-screen {
+  background-image: url("./images/game-background-dark.jpg");
+}
+#gameover-screen {
+  background-image: url("./images/gameOver-dementor.jpg");
+}
+
 #subtitle {
   font-size: 25px;
   color: rgb(3, 3, 17);
   margin-top: 0px;
   text-shadow: 0px 4px 4px #000000;
 }
+#instructions{
+  display: inline-block;
+  background-color:rgba(179, 166, 163, 0.7);
+  text-align: justify;
+  padding: 4vh;
+  text-shadow:  0px 4px 4px #000000; 
+  margin-top: 0vh;
+  margin-left: 25vw ;
+  margin-right: 25vw;
+  border-radius: 10px;
+ 
+}
 
 #start-btn {
   font-family: "Harry Potter", sans-serif;
   background-color: rgb(68, 70, 94);
   color: white;
-  padding: 15px;
-  font-size: 20px;
-  margin-top: 150px;
+  font-size: 20px; 
+  margin-top: 0%; 
   border-radius: 60px;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /*transicion para un efecto suave al hacer hover */
 }
+
 #start-btn:hover {
   background-color: lightgrey;
   color: rgb(40, 40, 57);
@@ -43,50 +79,23 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 250px;
-  padding-top: 120px;
+  margin: 10vh;
+  
 }
 
-#game-box {
-  background-color: darkgray;
-  width: 1200px;
-  height: 700px;
-  overflow: hidden;
-  position: relative;
-  user-select: none;
-
-  background-image: url("./images/game-background-dark.jpg");
-  background-position: center;
-  background-size: cover;
-}
-#gameover-screen {
-  background-color: darkgray;
-  width: 1000px;
-  height: 600px;
-  overflow: hidden;
-  position: relative;
-  user-select: none;
-  background-image: url("./images/gameOver-dementor.jpg");
-  background-position: center;
-  background-size: cover;
-}
-#gameover-screen p{
-    margin-top: 45px;
+#gameover-screen p {
+  margin-top: 20vh;
   color: gray;
-   text-shadow: 0px 4px 4px #000000;
-   font-size: 30px;
-   
+  text-shadow: 0px 4px 4px #000000;
+  font-size: 30px;
 }
-.reset-btn{
-   
-    background: none; 
-    border: none; 
-    cursor: pointer;
-
+.reset-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 #game-screen, #gameover-screen{
   display: none;
 }
-
 
 
