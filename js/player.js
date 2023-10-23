@@ -19,6 +19,8 @@ class Player {
 
     this.gravitySpeed = 3;
     this.jumpSpeed = 40;
+
+    
   }
 
   gravityEffect = () => {

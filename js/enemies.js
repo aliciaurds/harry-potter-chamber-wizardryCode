@@ -21,15 +21,16 @@ class Enemies {
     this.node.style.left = `${this.x}px`;
     this.node.style.top = `${this.y}px`;
 
-    this.speedX = 3;
-    this.speedY = 1;
+    this.speedX = 2.3;
+    //this.speedY = Math.random()*3;
   }
 
   autoMovement = () => {
     this.x -= this.speedX;
-    this.y += this.speedY;
+    //this.y += this.speedY;
+    
     this.node.style.left = `${this.x}px`;
-    this.node.style.top = `${this.y}px`;
+    //this.node.style.top = `${this.y}px`;
   };
 }
 

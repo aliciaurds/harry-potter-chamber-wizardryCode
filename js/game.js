@@ -1,6 +1,7 @@
 class Game {
   constructor() {
     this.player = new Player();
+    this.wand = new Wand();
 
     this.enemiesArr = [];
 
@@ -9,18 +10,15 @@ class Game {
   }
 
   enemiesAppear = () => {
-   
-      let randomPosition = Math.random() * 10;
-      if (this.timer % 180 === 0) {
+    if (this.timer % 180 === 0) {
+      let randomPosition = Math.random() * 200;
       let voldemort = new Enemies("voldemort", randomPosition);
       this.enemiesArr.push(voldemort);
-      }else if (this.timer%220 === 0){
-    
-      
-      let umbridge = new Enemies("umbridge", randomPosition + 400);
+    } else if (this.timer % 240 === 0) {
+      let randomPosition = Math.random() * 100;
+      let umbridge = new Enemies("umbridge", randomPosition+400);
       this.enemiesArr.push(umbridge);
     }
-    
   };
 
   enemiesDisapear = () => {
@@ -43,22 +41,22 @@ class Game {
     });
   };
 
+
   stopGameLoop = () => {
     this.isGameOn = false;
     this.player.node.remove();
-  }
+  };
 
   gameOver = () => {
     this.isGameOn = false;
     gameScreenNode.style.display = "none";
     gameOverScreenNode.style.display = "flex";
-    
   };
 
- 
   //Iniciar juego
   gameLoop = () => {
     this.player.gravityEffect();
+   this.wand.wandMovement();
 
     this.enemiesArr.forEach((eachEnemy) => {
       eachEnemy.autoMovement();
@@ -66,7 +64,6 @@ class Game {
     this.enemiesAppear();
     this.collisionEnemies();
     this.enemiesDisapear();
-    
 
     this.timer++; // antes de la recursion
     if (this.isGameOn === true) {
