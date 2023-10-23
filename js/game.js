@@ -9,16 +9,18 @@ class Game {
   }
 
   enemiesAppear = () => {
-    if (this.timer % 180 === 0) {
-      let randomPosition = Math.random() * 100;
-
+   
+      let randomPosition = Math.random() * 10;
+      if (this.timer % 180 === 0) {
       let voldemort = new Enemies("voldemort", randomPosition);
       this.enemiesArr.push(voldemort);
-    } else if (this.timer % 240 === 0) {
-      let randomPosition1 = Math.random() * 400;
-      let umbridge = new Enemies("umbridge", randomPosition1);
+      }else if (this.timer%220 === 0){
+    
+      
+      let umbridge = new Enemies("umbridge", randomPosition + 400);
       this.enemiesArr.push(umbridge);
     }
+    
   };
 
   enemiesDisapear = () => {
@@ -41,10 +43,16 @@ class Game {
     });
   };
 
+  stopGameLoop = () => {
+    this.isGameOn = false;
+    this.player.node.remove();
+  }
+
   gameOver = () => {
     this.isGameOn = false;
     gameScreenNode.style.display = "none";
     gameOverScreenNode.style.display = "flex";
+    
   };
 
  
