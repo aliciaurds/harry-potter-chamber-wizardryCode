@@ -14,9 +14,15 @@ const startGame = () => {
   gameScreenNode.style.display = "flex";
 
   gameObj = new Game(); //creando objeto
-  console.log(gameObj);
 
   gameObj.gameLoop(); //ejecutando la recursion
+};
+const resetGame = () => {
+  gameOverScreenNode.style.display = "none";
+  initialScreenNode.start.display = "flex";
+
+  gameObj = new Game();
+  gameObj.gameLoop();
 };
 
 // * EVENT LISTENERS
@@ -26,3 +32,4 @@ document.addEventListener("keydown", (event) => {
     gameObj.player.jump(); //accedo al objeto, dentro de el al jugador y luego la accion
   }
 });
+reseBtnNode.addEventListener("click", resetGame);

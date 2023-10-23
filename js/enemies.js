@@ -7,6 +7,7 @@ class Enemies {
         this.node.src = "./images/umbridge1.png";
     }
     
+    
     gameBoxNode.append(this.node);
 
     this.w = 60;
@@ -20,12 +21,15 @@ class Enemies {
     this.node.style.left = `${this.x}px`;
     this.node.style.top = `${this.y}px`;
 
-    this.speed = 3;
+    this.speedX = 3;
+    this.speedY = 1;
   }
 
   autoMovement = () => {
-    this.x -= this.speed;
+    this.x -= this.speedX;
+    this.y += this.speedY;
     this.node.style.left = `${this.x}px`;
+    this.node.style.top = `${this.y}px`;
   };
 }
 

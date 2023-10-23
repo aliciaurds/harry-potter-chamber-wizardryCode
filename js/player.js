@@ -6,8 +6,8 @@ class Player {
     gameBoxNode.append(this.node);
 
     //dimensiones
-    this.w = 220;
-    this.h = 240;
+    this.w = 200;
+    this.h = 220;
     this.x = 70;
     this.y = 250;
 
