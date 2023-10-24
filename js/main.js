@@ -19,14 +19,7 @@ const startGame = () => {
 };
 const resetGame = () => {
   gameBoxNode.innerHTML = "";
-  if(gameObj){ //si el juego esta ejecutandose
-    gameObj.stopGameLoop();
-  }
   
-  if(!gameObj){
-  gameObj = new Game();
-  gameObj.gameLoop();
-}
 gameOverScreenNode.style.display = "none";
 initialScreenNode.style.display = "flex";
   

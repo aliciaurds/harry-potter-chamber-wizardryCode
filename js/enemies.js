@@ -10,8 +10,8 @@ class Enemies {
     
     gameBoxNode.append(this.node);
 
-    this.w = 60;
-    this.h = 80;
+    this.w = 50;
+    this.h = 70;
     this.x = 1100;
     this.y = yPosition
 
@@ -21,7 +21,7 @@ class Enemies {
     this.node.style.left = `${this.x}px`;
     this.node.style.top = `${this.y}px`;
 
-    this.speedX = 2.3;
+    this.speedX = 2;
     //this.speedY = Math.random()*3;
   }
 

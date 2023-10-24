@@ -4,8 +4,8 @@ class Wand {
     this.node.src = "./images/varita.png";
     gameBoxNode.append(this.node);
 
-    this.w = 60;
-    this.h = 60;
+    this.w = 80;
+    this.h = 80;
     this.x = 150;
     this.y = -150;
 
