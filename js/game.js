@@ -2,9 +2,10 @@ class Game {
   constructor() {
     this.player = new Player();
     this.wand = null;
+   
 
     this.enemiesArr = [];
-   this.spellArr = [];
+    this.spellArr = [];
 
     this.timer = 0;
     this.isGameOn = true;
@@ -49,33 +50,39 @@ class Game {
     }, 10000);
   };
   collisionWand = () => {
-    if (
-      this.wand &&
-      this.wand.x < this.player.x + this.player.w &&
-      this.wand.x + this.wand.w > this.player.x &&
-      this.wand.y < this.player.y + this.player.h &&
-      this.wand.y + this.wand.h > this.player.y
-    ) {
+    if (this.wand && 
+      this.wand.x < this.player.x + this.player.w && 
+      this.wand.x + this.wand.w > this.player.x && 
+      this.wand.y < this.player.y + this.player.h && 
+      this.wand.y + this.wand.h > this.player.y) {
       this.wand.node.remove();
+      return true; //hay una colisión
+    } else{
+    return false; 
     }
+  }
+  spellAppear = () => {
+    if (this.collisionWand()) {  // si hay colision con varita
+      let expelliarmus = new Spell(this.player.x, this.player.y); // posicion de player en shoot.js
+      this.spellArr.push(expelliarmus);//agregar al array
+    }
+  }
+  collisionSpell = () => {
+    this.spellArr.forEach((spell) => { //recorrer ambos arrays en bucle, 1º elementos spell y luego enemies
+      this.enemiesArr.forEach((enemy) => {
+        if ( //si existe colision
+          spell.x < enemy.x + enemy.w &&
+          spell.x + spell.w > enemy.x &&
+          spell.y < enemy.y + enemy.h &&
+          spell.y + spell.h > enemy.y
+        ) {
+          spell.node.remove(); //se quita el spell
+          enemy.node.remove(); // se quita el enemigo
+                    
+        }
+      });
+    });
   };
-  spellAppear = () =>{
-    if(this.collisionWand){
-      let expelliarmus = new Spell();
-      this.spellArr.push(expelliarmus);
-    }
-  }
-  collisionSpell = () =>{
-    if (
-      this.enemiesArr &&
-      this.enemiesArr.x < this.spellArr.x + this.spellArr.w &&
-      this.enemiesArr.x + this.enemiesArr.w > this.spellArr.x &&
-      this.enemiesArr.y < this.spellArr.y + this.spellArr.h &&
-      this.enemiesArr.y + this.wand.h > this.spellArr.y
-    ) {
-      this.spell.node.remove();
-    }
-  }
 
   gameOver = () => {
     this.isGameOn = false;
@@ -93,9 +100,9 @@ class Game {
     this.enemiesArr.forEach((eachEnemy) => {
       eachEnemy.autoMovement();
     });
-    this.spellArr.forEach((eachSpell)=>{
+    this.spellArr.forEach((eachSpell) => {
       eachSpell.spellMovement();
-    })
+    });
     this.enemiesAppear();
     this.collisionEnemies();
     this.enemiesDisapear();

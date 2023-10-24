@@ -16,6 +16,8 @@ const startGame = () => {
   gameObj = new Game(); //creando objeto
 
   gameObj.gameLoop(); //ejecutando la recursion
+
+  document.addEventListener("mousedown", spellEvent);
 };
 const resetGame = () => {
   gameBoxNode.innerHTML = "";
@@ -37,6 +39,4 @@ const jumpEvent = (event) => {
 // * EVENT LISTENERS
 startBtnNode.addEventListener("click", startGame);
 document.addEventListener("keydown", jumpEvent);
-
-document.addEventListener("mousedown", spellEvent);
 resetBtnNode.addEventListener("click", resetGame);
