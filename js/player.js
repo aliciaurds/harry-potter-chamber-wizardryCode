@@ -4,7 +4,6 @@ class Player {
     this.node = document.createElement("img");
     this.node.src = "./images/harry-potter-broom.png";
     gameBoxNode.append(this.node);
-   
 
     //dimensiones
     this.w = 150;
@@ -20,11 +19,7 @@ class Player {
 
     this.gravitySpeed = 2.3;
     this.jumpSpeed = 40;
-
-    
   }
-  
-
 
   gravityEffect = () => {
     this.y += this.gravitySpeed; //actualiza value y añade velocidad

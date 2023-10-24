@@ -5,8 +5,8 @@ class Spell {
 
     this.w = 40;
     this.h = 40;
-    this.x = 170;
-    this.y = 0;
+    this.x = 70;
+    this.y = this.y.player/2; //alinear hechizo con el centro del jugador???
 
     this.node.style.width = `${this.w}px`;
     this.node.style.height = `${this.h}px`;
@@ -17,6 +17,11 @@ class Spell {
   
       gameBoxNode.append(this.node);
       this.speed = 5; 
+    }
+  
+    spellMovement = () =>{
+      this.x += this.speed
+      this.node.style.left = `${this.x}px`
     }
 }
   

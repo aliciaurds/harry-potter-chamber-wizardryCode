@@ -19,17 +19,24 @@ const startGame = () => {
 };
 const resetGame = () => {
   gameBoxNode.innerHTML = "";
-  
-gameOverScreenNode.style.display = "none";
-initialScreenNode.style.display = "flex";
-  
-}
+
+  gameOverScreenNode.style.display = "none";
+  initialScreenNode.style.display = "flex";
+};
+const spellEvent = (event) => {
+  if (event.button === 0) {
+    gameObj.spell.spellMovement();
+  }
+};
+const jumpEvent = (event) => {
+  if (event.code === "Space") {
+    gameObj.player.jump(); 
+  }
+};
 
 // * EVENT LISTENERS
 startBtnNode.addEventListener("click", startGame);
-document.addEventListener("keydown", (event) => {
-  if (event.code === "Space") {
-    gameObj.player.jump(); //accedo al objeto, dentro de el al jugador y luego la accion
-  }
-});
+document.addEventListener("keydown", jumpEvent);
+
+document.addEventListener("mousedown", spellEvent);
 resetBtnNode.addEventListener("click", resetGame);
