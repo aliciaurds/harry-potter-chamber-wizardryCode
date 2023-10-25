@@ -27,10 +27,21 @@ class Enemies {
 
   autoMovement = () => {
     this.x -= this.speedX;
-    //this.y += this.speedY;
-    
+    //this.y += this.speedY;    
     this.node.style.left = `${this.x}px`;
     //this.node.style.top = `${this.y}px`;
+
+    let gameBoxTop = 50;
+    let gameBoxBottom = 500;
+
+    if (this.y <= gameBoxTop) {
+      this.y = gameBoxTop;
+      this.node.style.top = `${this.y}px`;
+    }
+    if (this.y >= gameBoxBottom) {
+      this.y = gameBoxBottom;
+      this.node.style.top = `${this.y}px`;
+    }
   };
 }
 

@@ -25,7 +25,7 @@ class Player {
     this.y += this.gravitySpeed; //actualiza value y añade velocidad
     this.node.style.top = `${this.y}px`; //actualiza dom
     let gameBoxTop = -50;
-    let gameBoxBottom = 500;
+    let gameBoxBottom = 400;
 
     if (this.y <= gameBoxTop) {
       this.y = gameBoxTop;
