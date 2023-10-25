@@ -43,5 +43,54 @@ class Enemies {
       this.node.style.top = `${this.y}px`;
     }
   };
+  /*autoMovement = () => {
+  if (this.timer <= 10000) {
+    this.x -= this.speedX;
+  } else {
+    this.x -= this.speedX;
+    this.y += this.speedY;
+  }
+
+  this.node.style.left = `${this.x}px`;
+  this.node.style.top = `${this.y}px`;
+
+  let gameBoxTop = 50;
+  let gameBoxBottom = 500;
+
+  if (this.y <= gameBoxTop) {
+    this.y = gameBoxTop;
+    this.node.style.top = `${this.y}px`;
+  }
+  if (this.y >= gameBoxBottom) {
+    this.y = gameBoxBottom;
+    this.node.style.top = `${this.y}px`;
+  }
+};*/
+
+
+// o ...
+
+/*autoMovement = () => {
+  if (this.timer <= 10000) {
+    this.x -= this.speedX;
+  } else {
+    this.x -= this.speedX * 2; 
+  }
+
+  this.node.style.left = `${this.x}px`;
+  this.node.style.top = `${this.y}px`;
+
+  let gameBoxTop = 50;
+  let gameBoxBottom = 500;
+
+  if (this.y <= gameBoxTop) {
+    this.y = gameBoxTop;
+    this.node.style.top = `${this.y}px`;
+  }
+  if (this.y >= gameBoxBottom) {
+    this.y = gameBoxBottom;
+    this.node.style.top = `${this.y}px`;
+  }
+};*/
 }
 

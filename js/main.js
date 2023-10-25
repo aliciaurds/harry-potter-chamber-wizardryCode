@@ -29,7 +29,7 @@ const resetGame = () => {
 };
 const spellEvent = (event) => {
   
-  if (gameObj !== undefined && gameObj.isGameOn === true && event.button === 0) {
+  if (gameObj !== undefined && gameObj.isGameOn === true && event.code === "KeyX") {
     gameObj.spell.spellMovement();
   }
 };
@@ -37,12 +37,15 @@ const jumpEvent = (event) => {
   if (event.code === "Space") {
     gameObj.player.jump(); 
   }
+  
 };
+
+
 
 // * EVENT LISTENERS
 startBtnNode.addEventListener("click", startGame);
 document.addEventListener("keydown", jumpEvent);
-document.addEventListener("mousedown", spellEvent);
+document.addEventListener("keydown", spellEvent);
 resetBtnNode.addEventListener("click", resetGame);
 
 

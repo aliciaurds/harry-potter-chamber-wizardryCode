@@ -83,13 +83,21 @@ audio {
   
 }
 
-#game-screen span{
+#game-screen #score{
+  color: white;
+  position: absolute;
+  top: 5vh;
+  right: 25vw;
+ 
+}
+#game-screen #high-score{
   color: white;
   position: absolute;
   top: 5vh;
   right: 15vw;
  
 }
+
 
 #gameover-screen img {
 margin-top: 8vh;

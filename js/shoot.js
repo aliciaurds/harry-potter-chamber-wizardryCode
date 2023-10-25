@@ -15,12 +15,13 @@ class Spell {
     this.node.style.top = `${this.y}px`;
 
     gameBoxNode.append(this.node);
-    this.speed = 5;
+    this.speed = 10;
   }
 
   spellMovement = () => {
-    this.x += this.speed;
-    this.node.style.left = `${this.x}px`;
+  this.x += this.speed;
+   this.node.style.left = `${this.x}px`;
+    
   };
 }
 

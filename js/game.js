@@ -11,6 +11,9 @@ class Game {
     this.wandAppear();
     this.score = 0;
     this.scoreNode = document.querySelector("#score");
+    this.highScore = localStorage.getItem("highScore") || 0;
+    this.highScoreNode = document.querySelector("#high-score");
+    this.highScoreNode.innerText = `HIGH SCORE: ${this.highScore}`;
   }
 
   enemiesAppear = () => {
@@ -32,7 +35,7 @@ class Game {
     }
   };
 
-  collisionEnemies = () => {    
+  collisionEnemies = () => {
     this.enemiesArr.forEach((eachEnemy) => {
       let playBoxReduction = 40;
       if (
@@ -41,17 +44,16 @@ class Game {
         eachEnemy.y < this.player.y + this.player.h - playBoxReduction &&
         eachEnemy.y + eachEnemy.h > this.player.y + playBoxReduction
       ) {
-        
         this.gameOver();
       }
     });
-    
   };
   wandAppear = () => {
     setTimeout(() => {
       this.wand = new Wand();
-    }, 10000);
+    }, 20000);
   };
+
   collisionWand = () => {
     if (
       this.wand &&
@@ -66,6 +68,7 @@ class Game {
       return false;
     }
   };
+
   spellAppear = () => {
     if (this.collisionWand()) {
       // si hay colision con varita
@@ -73,6 +76,7 @@ class Game {
       this.spellArr.push(expelliarmus); //agregar al array
     }
   };
+
   collisionSpell = () => {
     this.spellArr.forEach((spell, spellIndex) => {
       //recorrer ambos arrays en bucle, 1º elementos spell y luego enemies
@@ -86,7 +90,7 @@ class Game {
         ) {
           spell.node.remove(); //se quita el spell
           enemy.node.remove(); // se quita el enemigo
-          this.spellArr.splice(spellIndex, 1);
+          this.spellArr.splice(spellIndex, 1); //lo elimina del ARR
           this.enemiesArr.splice(enemyIndex, 1);
         }
       });
@@ -95,7 +99,14 @@ class Game {
   calculateTime = () => {
     return Math.floor(this.timer / 60); //aumenta la puntuacion cada segundo
   };
-
+  /*resetHighScore = () =>{
+    localStorage.removeItem('highScore');
+    this.highScore = 0;
+    this.highScoreNode.innerText = `HIGH SCORE: ${this.highScore}`;
+  }
+   isPageRefreshing = ()=>{
+    return performance.navigation.type === 1; // 1 indica recarga de la página
+  }*/
 
   gameOver = () => {
     this.isGameOn = false;
@@ -116,6 +127,7 @@ class Game {
     this.spellArr.forEach((eachSpell) => {
       eachSpell.spellMovement();
     });
+
     this.enemiesAppear();
     this.collisionEnemies();
     this.enemiesDisapear();
@@ -123,11 +135,20 @@ class Game {
     this.collisionSpell();
     this.spellAppear();
 
-    let timeScore = this.calculateTime() * Math.floor(Math.random()*10);
+    /*if(this.isPageRefreshing()){
+      this.resetHighScore();
+    }*/
+
+    let timeScore = this.calculateTime() * Math.floor(Math.random() * 10);
 
     if (timeScore > this.score) {
       this.score = timeScore;
       this.scoreNode.innerText = `SCORE: ${this.score}`;
+    }
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      this.highScoreNode.innerText = `HIGH SCORE: ${this.highScore}`;
+      localStorage.setItem("highScore", this.highScore);
     }
 
     this.timer++; // antes de la recursion
