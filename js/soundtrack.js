@@ -4,15 +4,16 @@ window.addEventListener("load", function () {
   
 	playButton.addEventListener("click", playAudio);
 	stopButton.addEventListener("click", stopAudio);
-	playAudio(); // Reproducir al cargar la página
+	
   });
   
   let audio = null;
   
   function playAudio() {
-	if (audio === null) {
+	if (audio === null) { //para saber si se ha iniciado
 	  audio = new Audio("./Soundtrack/HarryPotterSoundtrack.mp3");
 	  audio.loop = true; //reproducir audio en bucle
+	  audio.volume = 0.1;
 	}
   
 	audio.play(); //llamar metodo para reproducir
