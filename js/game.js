@@ -2,7 +2,6 @@ class Game {
   constructor() {
     this.player = new Player();
     this.wand = null;
-   
 
     this.enemiesArr = [];
     this.spellArr = [];
@@ -33,7 +32,7 @@ class Game {
     }
   };
 
-  collisionEnemies = () => {
+  collisionEnemies = () => {    
     this.enemiesArr.forEach((eachEnemy) => {
       let playBoxReduction = 40;
       if (
@@ -42,9 +41,11 @@ class Game {
         eachEnemy.y < this.player.y + this.player.h - playBoxReduction &&
         eachEnemy.y + eachEnemy.h > this.player.y + playBoxReduction
       ) {
+        
         this.gameOver();
       }
     });
+    
   };
   wandAppear = () => {
     setTimeout(() => {
@@ -52,27 +53,32 @@ class Game {
     }, 10000);
   };
   collisionWand = () => {
-    if (this.wand && 
-      this.wand.x < this.player.x + this.player.w && 
-      this.wand.x + this.wand.w > this.player.x && 
-      this.wand.y < this.player.y + this.player.h && 
-      this.wand.y + this.wand.h > this.player.y) {
+    if (
+      this.wand &&
+      this.wand.x < this.player.x + this.player.w &&
+      this.wand.x + this.wand.w > this.player.x &&
+      this.wand.y < this.player.y + this.player.h &&
+      this.wand.y + this.wand.h > this.player.y
+    ) {
       this.wand.node.remove();
       return true; //hay una colisión
-    } else{
-    return false; 
+    } else {
+      return false;
     }
-  }
+  };
   spellAppear = () => {
-    if (this.collisionWand()) {  // si hay colision con varita
+    if (this.collisionWand()) {
+      // si hay colision con varita
       let expelliarmus = new Spell(this.player.x, this.player.y); // posicion de player en shoot.js
-      this.spellArr.push(expelliarmus);//agregar al array
+      this.spellArr.push(expelliarmus); //agregar al array
     }
-  }
+  };
   collisionSpell = () => {
-    this.spellArr.forEach((spell, spellIndex) => { //recorrer ambos arrays en bucle, 1º elementos spell y luego enemies
+    this.spellArr.forEach((spell, spellIndex) => {
+      //recorrer ambos arrays en bucle, 1º elementos spell y luego enemies
       this.enemiesArr.forEach((enemy, enemyIndex) => {
-        if ( //si existe colision
+        if (
+          //si existe colision
           spell.x < enemy.x + enemy.w &&
           spell.x + spell.w > enemy.x &&
           spell.y < enemy.y + enemy.h &&
@@ -82,14 +88,13 @@ class Game {
           enemy.node.remove(); // se quita el enemigo
           this.spellArr.splice(spellIndex, 1);
           this.enemiesArr.splice(enemyIndex, 1);
-                    
         }
       });
     });
   };
   calculateTime = () => {
-    return Math.floor(this.timer/60); //aumenta la puntuacion cada segundo
-  }
+    return Math.floor(this.timer / 60); //aumenta la puntuacion cada segundo
+  };
 
 
   gameOver = () => {
@@ -118,14 +123,12 @@ class Game {
     this.collisionSpell();
     this.spellAppear();
 
-    let timeScore = this.calculateTime();
+    let timeScore = this.calculateTime() * Math.floor(Math.random()*10);
 
-    if (timeScore > this.score){
+    if (timeScore > this.score) {
       this.score = timeScore;
       this.scoreNode.innerText = `SCORE: ${this.score}`;
     }
-
-        
 
     this.timer++; // antes de la recursion
     if (this.isGameOn === true) {
@@ -133,4 +136,3 @@ class Game {
     }
   };
 }
-

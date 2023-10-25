@@ -42,5 +42,6 @@ class Player {
     //la "y" va hacia abajo, si queremos que vaya hacia arriba tiene que ser "-"
     this.node.style.top = `${this.y}px`;
   };
+  
 }
 
