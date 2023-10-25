@@ -5,6 +5,7 @@ let gameScreenNode = document.querySelector("#game-screen");
 let gameBoxNode = document.querySelector("#game-box");
 let gameOverScreenNode = document.querySelector("#gameover-screen");
 let resetBtnNode = document.querySelector(".reset-btn");
+let scoreNode = document.querySelector("#score");
 
 let gameObj;
 
@@ -14,19 +15,21 @@ const startGame = () => {
   gameScreenNode.style.display = "flex";
 
   gameObj = new Game(); //creando objeto
-
+ 
   gameObj.gameLoop(); //ejecutando la recursion
 
-  document.addEventListener("mousedown", spellEvent);
 };
 const resetGame = () => {
   gameBoxNode.innerHTML = "";
-
+  
   gameOverScreenNode.style.display = "none";
   initialScreenNode.style.display = "flex";
+  
+  
 };
 const spellEvent = (event) => {
-  if (event.button === 0) {
+  
+  if (gameObj !== undefined && gameObj.isGameOn === true && event.button === 0) {
     gameObj.spell.spellMovement();
   }
 };
@@ -39,4 +42,7 @@ const jumpEvent = (event) => {
 // * EVENT LISTENERS
 startBtnNode.addEventListener("click", startGame);
 document.addEventListener("keydown", jumpEvent);
+document.addEventListener("mousedown", spellEvent);
 resetBtnNode.addEventListener("click", resetGame);
+
+

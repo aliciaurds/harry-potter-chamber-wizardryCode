@@ -10,6 +10,8 @@ class Game {
     this.timer = 0;
     this.isGameOn = true;
     this.wandAppear();
+    this.score = 0;
+    this.scoreNode = document.querySelector("#score");
   }
 
   enemiesAppear = () => {
@@ -68,8 +70,8 @@ class Game {
     }
   }
   collisionSpell = () => {
-    this.spellArr.forEach((spell) => { //recorrer ambos arrays en bucle, 1º elementos spell y luego enemies
-      this.enemiesArr.forEach((enemy) => {
+    this.spellArr.forEach((spell, spellIndex) => { //recorrer ambos arrays en bucle, 1º elementos spell y luego enemies
+      this.enemiesArr.forEach((enemy, enemyIndex) => {
         if ( //si existe colision
           spell.x < enemy.x + enemy.w &&
           spell.x + spell.w > enemy.x &&
@@ -78,11 +80,17 @@ class Game {
         ) {
           spell.node.remove(); //se quita el spell
           enemy.node.remove(); // se quita el enemigo
+          this.spellArr.splice(spellIndex, 1);
+          this.enemiesArr.splice(enemyIndex, 1);
                     
         }
       });
     });
   };
+  calculateTime = () => {
+    return Math.floor(this.timer/60); //aumenta la puntuacion cada segundo
+  }
+
 
   gameOver = () => {
     this.isGameOn = false;
@@ -110,9 +118,19 @@ class Game {
     this.collisionSpell();
     this.spellAppear();
 
+    let timeScore = this.calculateTime();
+
+    if (timeScore > this.score){
+      this.score = timeScore;
+      this.scoreNode.innerText = `SCORE: ${this.score}`;
+    }
+
+        
+
     this.timer++; // antes de la recursion
     if (this.isGameOn === true) {
       requestAnimationFrame(this.gameLoop);
     }
   };
 }
+

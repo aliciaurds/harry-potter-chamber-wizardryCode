@@ -23,3 +23,4 @@ class Spell {
     this.node.style.left = `${this.x}px`;
   };
 }
+

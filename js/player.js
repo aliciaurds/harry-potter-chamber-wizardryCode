@@ -43,3 +43,4 @@ class Player {
     this.node.style.top = `${this.y}px`;
   };
 }
+
