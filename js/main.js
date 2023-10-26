@@ -9,7 +9,7 @@ let spellButton = document.querySelector("#spell-button");
 let scoreNode = document.querySelector("#score");
 
 let gameObj;
-let spellEnabled = false;
+
 // * STATE MANAGEMENT FUNCTIONS
 const startGame = () => {
   initialScreenNode.style.display = "none";
@@ -22,16 +22,16 @@ const startGame = () => {
 };
 const resetGame = () => {
   gameBoxNode.innerHTML = "";
-  
   gameOverScreenNode.style.display = "none";
   initialScreenNode.style.display = "flex";
-  
-  
+  spellEnabled = false;
 };
-const spellEvent = () => {
-  spellEnabled = !spellEnabled; // Cambia el estado del disparo del hechizo
+const spellEvent = (event) => {
+  
+  if (gameObj !== undefined && gameObj.isGameOn === true && gameObj.spellEnabled === true && event.button === 0) {
+    gameObj.spell.spellMovement();
+  }
 };
-
 const jumpEvent = (event) => {
   if (event.code === "Space") {
     gameObj.player.jump(); 

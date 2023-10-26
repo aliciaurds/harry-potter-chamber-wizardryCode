@@ -9,6 +9,7 @@ class Game {
 
     this.timer = 0;
     this.isGameOn = true;
+    this.spellEnabled = true;
     this.wandAppear();
     this.score = 0;
     this.scoreNode = document.querySelector("#score");
@@ -74,7 +75,7 @@ class Game {
   };
 
   spellAppear = () => {
-    if (this.collisionWand()&&spellEnabled) {
+    if (this.collisionWand() && spellEnabled) {
       // si hay colision con varita
       let expelliarmus = new Spell(this.player.x, this.player.y); // posicion de player en shoot.js
       this.spellArr.push(expelliarmus); //agregar al array

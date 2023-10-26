@@ -13,17 +13,18 @@ window.addEventListener("load", function () {
 	if (audio === null) { //para saber si se ha iniciado
 	  audio = new Audio("./Soundtrack/HarryPotterSoundtrack.mp3");
 	  audio.loop = true; //reproducir audio en bucle
-	  audio.volume = 0.1;
+	  audio.volume = 0.2;//propiedad audio.volume integrada
 	}
   
 	audio.play(); //llamar metodo para reproducir
 	document.querySelector("#play").removeEventListener("click", playAudio);
+	//evitar que se haga clic de nuevo mientras se reproduce
   }
   
   function stopAudio() {
-	if (audio) {
-	  audio.pause();
-	  audio.currentTime = 0;
-	  document.querySelector("#play").addEventListener("click", playAudio);
+	if (audio) { //verifica si existe
+	  audio.pause();//lo pausa
+	  audio.currentTime = 0;//reinicia tiempo (propiedad audio.currentTime integrada)
+	  document.querySelector("#play").addEventListener("click", playAudio); //vuelve a añador el evento
 	}
   }
