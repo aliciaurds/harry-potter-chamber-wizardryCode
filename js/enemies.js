@@ -1,5 +1,5 @@
 class Enemies {
-  constructor(type, yPosition) {
+  constructor(type, yPosition, difficultySpeed) {
     this.node = document.createElement("img");
     if(type === "voldemort"){
         this.node.src = "./images/voldemort.png";
@@ -21,7 +21,7 @@ class Enemies {
     this.node.style.left = `${this.x}px`;
     this.node.style.top = `${this.y}px`;
 
-    this.speedX = 3;
+    this.speedX = difficultySpeed;
    
   }
 
