@@ -39,10 +39,13 @@ class Game {
   };
 
   enemiesDisapear = () => {
+    if (this.enemiesArr.length !== 0){
+      
     if (this.enemiesArr[0].x < 0) {
       this.enemiesArr[0].node.remove();
       this.enemiesArr.shift();
     }
+  }
    
   };
 
@@ -130,6 +133,7 @@ class Game {
     this.isGameOn = false;
     gameScreenNode.style.display = "none";
     gameOverScreenNode.style.display = "flex";
+    playHermione();
   };
 
 
