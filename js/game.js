@@ -5,6 +5,7 @@ class Game {
 
     this.enemiesArr = [];
     this.spellArr = [];
+    this.difficultyTime = 2;
 
     this.timer = 0;
     this.isGameOn = true;
@@ -18,12 +19,15 @@ class Game {
 
   enemiesAppear = () => {
     if (this.timer % 180 === 0) {
+      if(this.timer % 900 === 0){//aumenta velocidad cada 15s
+        this.difficultyTime++
+      }
       let randomPosition = Math.random() * 500;
-      let voldemort = new Enemies("voldemort", randomPosition);
+      let voldemort = new Enemies("voldemort", randomPosition, this.difficultyTime);
       this.enemiesArr.push(voldemort);
     } else if (this.timer % 120 === 0) {
       let randomPosition1 = Math.random() * 400;
-      let umbridge = new Enemies("umbridge", randomPosition1 + 150);
+      let umbridge = new Enemies("umbridge", randomPosition1 + 150, this.difficultyTime);
       this.enemiesArr.push(umbridge);
     }
   };
@@ -70,7 +74,7 @@ class Game {
   };
 
   spellAppear = () => {
-    if (this.collisionWand()) {
+    if (this.collisionWand()&&spellEnabled) {
       // si hay colision con varita
       let expelliarmus = new Spell(this.player.x, this.player.y); // posicion de player en shoot.js
       this.spellArr.push(expelliarmus); //agregar al array
@@ -99,15 +103,20 @@ class Game {
   calculateTime = () => {
     return Math.floor(this.timer / 60); //aumenta la puntuacion cada segundo
   };
-  /*resetHighScore = () =>{
-    localStorage.removeItem('highScore');
-    this.highScore = 0;
-    this.highScoreNode.innerText = `HIGH SCORE: ${this.highScore}`;
-  }
-   isPageRefreshing = ()=>{
-    return performance.navigation.type === 1; // 1 indica recarga de la página
-  }*/
+  scoreChanges = () => {
+    let timeScore = this.calculateTime() * Math.floor(Math.random() * 10);
 
+    if (timeScore > this.score) {
+      this.score = timeScore;
+      this.scoreNode.innerText = `SCORE: ${this.score}`;
+    }
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      this.highScoreNode.innerText = `HIGH SCORE: ${this.highScore}`;
+      localStorage.setItem("highScore", this.highScore);
+    }
+  };
+    
   gameOver = () => {
     this.isGameOn = false;
     gameScreenNode.style.display = "none";
@@ -134,22 +143,10 @@ class Game {
     this.collisionWand();
     this.collisionSpell();
     this.spellAppear();
+    this.scoreChanges();
+    
 
-    /*if(this.isPageRefreshing()){
-      this.resetHighScore();
-    }*/
-
-    let timeScore = this.calculateTime() * Math.floor(Math.random() * 10);
-
-    if (timeScore > this.score) {
-      this.score = timeScore;
-      this.scoreNode.innerText = `SCORE: ${this.score}`;
-    }
-    if (this.score > this.highScore) {
-      this.highScore = this.score;
-      this.highScoreNode.innerText = `HIGH SCORE: ${this.highScore}`;
-      localStorage.setItem("highScore", this.highScore);
-    }
+  
 
     this.timer++; // antes de la recursion
     if (this.isGameOn === true) {

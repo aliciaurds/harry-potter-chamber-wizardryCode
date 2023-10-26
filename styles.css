@@ -100,8 +100,9 @@ audio {
 
 
 #gameover-screen img {
-margin-top: 8vh;
+margin-top: 5vh;
 padding-bottom: 0%;
+
 }
 
 #gameover-screen p {
@@ -118,6 +119,8 @@ padding-bottom: 0%;
 #game-screen, #gameover-screen{
   display: none;
 }
+
+
 
 
 

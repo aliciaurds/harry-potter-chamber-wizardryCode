@@ -5,10 +5,11 @@ let gameScreenNode = document.querySelector("#game-screen");
 let gameBoxNode = document.querySelector("#game-box");
 let gameOverScreenNode = document.querySelector("#gameover-screen");
 let resetBtnNode = document.querySelector(".reset-btn");
+let spellButton = document.querySelector("#spell-button");
 let scoreNode = document.querySelector("#score");
 
 let gameObj;
-
+let spellEnabled = false;
 // * STATE MANAGEMENT FUNCTIONS
 const startGame = () => {
   initialScreenNode.style.display = "none";
@@ -27,12 +28,10 @@ const resetGame = () => {
   
   
 };
-const spellEvent = (event) => {
-  
-  if (gameObj !== undefined && gameObj.isGameOn === true && event.code === "KeyX") {
-    gameObj.spell.spellMovement();
-  }
+const spellEvent = () => {
+  spellEnabled = !spellEnabled; // Cambia el estado del disparo del hechizo
 };
+
 const jumpEvent = (event) => {
   if (event.code === "Space") {
     gameObj.player.jump(); 
@@ -45,7 +44,6 @@ const jumpEvent = (event) => {
 // * EVENT LISTENERS
 startBtnNode.addEventListener("click", startGame);
 document.addEventListener("keydown", jumpEvent);
-document.addEventListener("keydown", spellEvent);
 resetBtnNode.addEventListener("click", resetGame);
-
+spellButton.addEventListener("click", spellEvent);
 
