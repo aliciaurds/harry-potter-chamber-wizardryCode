@@ -55,7 +55,7 @@ class Game {
   wandAppear = () => {
     setTimeout(() => {
       this.wand = new Wand();
-    }, 10000);
+    }, 15000);
   };
 
   collisionWand = () => {
