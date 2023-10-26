@@ -95,11 +95,14 @@ audio {
 }
 
 #spell-button{
- 
-  flex-direction: column;
-  align-self: flex-end;
-  background-color: rgb(68, 70, 94);
-  border-radius: 60px;
+ position: absolute;
+ z-index: 999;
+  top: 70vh;
+  left: 75vw;
+  background: none;
+  border: none;
+  border-radius: 9px;
+  font-size: 40px;
   cursor: pointer;
 }
 

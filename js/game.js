@@ -5,11 +5,12 @@ class Game {
 
     this.enemiesArr = [];
     this.spellArr = [];
-    this.difficultyTime = 2;
+    
+    
 
     this.timer = 0;
     this.isGameOn = true;
-    this.spellEnabled = true;
+    this.spellEnabled = false;
     this.wandAppear();
     this.score = 0;
     this.scoreNode = document.querySelector("#score");
@@ -19,16 +20,13 @@ class Game {
   }
 
   enemiesAppear = () => {
-    if (this.timer % 180 === 0) {
-      if(this.timer % 900 === 0){//aumenta velocidad cada 15s
-        this.difficultyTime++
-      }
+    if (this.timer % 120 === 0) {
       let randomPosition = Math.random() * 500;
-      let voldemort = new Enemies("voldemort", randomPosition, this.difficultyTime);
+      let voldemort = new Enemies("voldemort", randomPosition);
       this.enemiesArr.push(voldemort);
-    } else if (this.timer % 120 === 0) {
-      let randomPosition1 = Math.random() * 400;
-      let umbridge = new Enemies("umbridge", randomPosition1 + 150, this.difficultyTime);
+    } else if (this.timer % 60 === 0) {
+      let randomPosition1 = Math.random() * 500;
+      let umbridge = new Enemies("umbridge", randomPosition1 + 150);
       this.enemiesArr.push(umbridge);
     }
   };
@@ -38,11 +36,12 @@ class Game {
       this.enemiesArr[0].node.remove();
       this.enemiesArr.shift();
     }
+   
   };
 
   collisionEnemies = () => {
     this.enemiesArr.forEach((eachEnemy) => {
-      let playBoxReduction = 40;
+      let playBoxReduction = 30;
       if (
         eachEnemy.x < this.player.x + this.player.w - playBoxReduction &&
         eachEnemy.x + eachEnemy.w > this.player.x + playBoxReduction &&
@@ -56,7 +55,7 @@ class Game {
   wandAppear = () => {
     setTimeout(() => {
       this.wand = new Wand();
-    }, 20000);
+    }, 10000);
   };
 
   collisionWand = () => {
@@ -68,14 +67,12 @@ class Game {
       this.wand.y + this.wand.h > this.player.y
     ) {
       this.wand.node.remove();
-      return true; //hay una colisión
-    } else {
-      return false;
+      this.spellEnabled = true;
     }
   };
 
   spellAppear = () => {
-    if (this.collisionWand() && spellEnabled) {
+    if (this.spellEnabled) {
       // si hay colision con varita
       let expelliarmus = new Spell(this.player.x, this.player.y); // posicion de player en shoot.js
       this.spellArr.push(expelliarmus); //agregar al array
@@ -117,7 +114,7 @@ class Game {
       localStorage.setItem("highScore", this.highScore);
     }
   };
-    
+
   gameOver = () => {
     this.isGameOn = false;
     gameScreenNode.style.display = "none";
@@ -143,11 +140,7 @@ class Game {
     this.enemiesDisapear();
     this.collisionWand();
     this.collisionSpell();
-    this.spellAppear();
     this.scoreChanges();
-    
-
-  
 
     this.timer++; // antes de la recursion
     if (this.isGameOn === true) {

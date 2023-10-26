@@ -9,6 +9,7 @@ let spellButton = document.querySelector("#spell-button");
 let scoreNode = document.querySelector("#score");
 
 let gameObj;
+let spellBtnPressed= true; //verificar si esta pulsado el boton
 
 // * STATE MANAGEMENT FUNCTIONS
 const startGame = () => {
@@ -26,10 +27,12 @@ const resetGame = () => {
   initialScreenNode.style.display = "flex";
   spellEnabled = false;
 };
-const spellEvent = (event) => {
+const spellEvent = () => {
   
-  if (gameObj !== undefined && gameObj.isGameOn === true && gameObj.spellEnabled === true && event.button === 0) {
-    gameObj.spell.spellMovement();
+  if (gameObj !== undefined && gameObj.isGameOn === true && spellBtnPressed === true) {
+    
+    gameObj.spellAppear();
+    
   }
 };
 const jumpEvent = (event) => {
@@ -45,5 +48,11 @@ const jumpEvent = (event) => {
 startBtnNode.addEventListener("click", startGame);
 document.addEventListener("keydown", jumpEvent);
 resetBtnNode.addEventListener("click", resetGame);
-spellButton.addEventListener("click", spellEvent);
+spellButton.addEventListener("mousedown", () => {
+  spellPressed = false; // Cuando el botón se mantiene pulsado, marca como "true"
+  spellEvent(); // Llama a la función de hechizo inmediatamente al hacer clic
+});
 
+spellButton.addEventListener("mouseup", () => {
+  spellPressed = true; // Cuando se suelta el botón, marca como "false"
+});
