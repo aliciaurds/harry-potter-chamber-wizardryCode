@@ -19,9 +19,7 @@ class Spell {
   }
 
   spellMovement = () => {
-  this.x += this.speed;
-   this.node.style.left = `${this.x}px`;
-    
+    this.x += this.speed;
+    this.node.style.left = `${this.x}px`;
   };
 }
-

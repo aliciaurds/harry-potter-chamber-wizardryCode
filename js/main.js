@@ -9,7 +9,7 @@ let spellButton = document.querySelector("#spell-button");
 let scoreNode = document.querySelector("#score");
 
 let gameObj;
-let spellBtnPressed= true; //verificar si esta pulsado el boton
+let spellBtnPressed = true; //verificar si esta pulsado el boton
 
 // * STATE MANAGEMENT FUNCTIONS
 const startGame = () => {
@@ -17,9 +17,8 @@ const startGame = () => {
   gameScreenNode.style.display = "flex";
 
   gameObj = new Game(); //creando objeto
- 
-  gameObj.gameLoop(); //ejecutando la recursion
 
+  gameObj.gameLoop(); //ejecutando la recursion
 };
 const resetGame = () => {
   gameBoxNode.innerHTML = "";
@@ -28,21 +27,19 @@ const resetGame = () => {
   spellEnabled = false;
 };
 const spellEvent = () => {
-  
-  if (gameObj !== undefined && gameObj.isGameOn === true && spellBtnPressed === true) {
-    
+  if (
+    gameObj !== undefined &&
+    gameObj.isGameOn === true &&
+    spellBtnPressed === true
+  ) {
     gameObj.spellAppear();
-    
   }
 };
 const jumpEvent = (event) => {
   if (event.code === "Space") {
-    gameObj.player.jump(); 
+    gameObj.player.jump();
   }
-  
 };
-
-
 
 // * EVENT LISTENERS
 startBtnNode.addEventListener("click", startGame);

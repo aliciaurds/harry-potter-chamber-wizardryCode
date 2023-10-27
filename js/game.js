@@ -5,7 +5,7 @@ class Game {
 
     this.enemiesArr = [];
     this.spellArr = [];
-       
+
     this.difficultySpeed = 3;
 
     this.timer = 0;
@@ -22,31 +22,36 @@ class Game {
   fasterEnemies = () => {
     if (this.timer % 900 === 0) {
       this.difficultySpeed++;
-      
     }
-  }
+  };
 
   enemiesAppear = () => {
     if (this.timer % 120 === 0) {
       let randomPosition = Math.random() * 500;
-      let voldemort = new Enemies("voldemort", randomPosition, this.difficultySpeed);
+      let voldemort = new Enemies(
+        "voldemort",
+        randomPosition,
+        this.difficultySpeed
+      );
       this.enemiesArr.push(voldemort);
     } else if (this.timer % 60 === 0) {
       let randomPosition1 = Math.random() * 500;
-      let umbridge = new Enemies("umbridge", randomPosition1 + 150, this.difficultySpeed);
+      let umbridge = new Enemies(
+        "umbridge",
+        randomPosition1 + 150,
+        this.difficultySpeed
+      );
       this.enemiesArr.push(umbridge);
     }
   };
 
   enemiesDisapear = () => {
-    if (this.enemiesArr.length !== 0){
-      
-    if (this.enemiesArr[0].x < 0) {
-      this.enemiesArr[0].node.remove();
-      this.enemiesArr.shift();
+    if (this.enemiesArr.length !== 0) {
+      if (this.enemiesArr[0].x < 0) {
+        this.enemiesArr[0].node.remove();
+        this.enemiesArr.shift();
+      }
     }
-  }
-   
   };
 
   collisionEnemies = () => {
@@ -90,7 +95,6 @@ class Game {
   };
 
   collisionSpell = () => {
-   
     this.spellArr.forEach((spell, spellIndex) => {
       //recorrer ambos arrays en bucle, 1º elementos spell y luego enemies
       this.enemiesArr.forEach((enemy, enemyIndex) => {
@@ -105,13 +109,11 @@ class Game {
           enemy.node.remove(); // se quita el enemigo
           this.spellArr.splice(spellIndex, 1); //lo elimina del ARR
           this.enemiesArr.splice(enemyIndex, 1);
-        
         }
       });
     });
+  };
 
-    }
-  
   calculateTime = () => {
     return Math.floor(this.timer / 60); //aumenta la puntuacion cada segundo
   };
@@ -135,8 +137,6 @@ class Game {
     gameOverScreenNode.style.display = "flex";
     playHermione();
   };
-
-
 
   //Iniciar juego
   gameLoop = () => {
@@ -166,4 +166,3 @@ class Game {
     }
   };
 }
-

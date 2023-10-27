@@ -18,9 +18,7 @@ class Wand {
     this.wandSpeed = 3;
   }
   wandMovement = () => {
-    this.y += this.wandSpeed;    
+    this.y += this.wandSpeed;
     this.node.style.top = `${this.y}px`;
-    
   };
 }
-
