@@ -23,7 +23,7 @@ Harry Potter and the Chamber of Wizardry in Code is an exciting  wizardry advent
 
 # Backlog Functionalities
 
-- Add different playes so you can choose which one to play with.
+- Add different players so you can choose which one to play with.
 - Each player to have different spells.
 - Add a Dementor that takes score out from you.
 - Add a Patronus that destroys all enemies around.
@@ -158,7 +158,7 @@ Harry Potter and the Chamber of Wizardry in Code is an exciting  wizardry advent
 [Link](https://trello.com/b/6gbPFKQ1/harrypotter-chamber-wizardrycode)
 
 ### Slides
-[Link](www.your-slides-url-here.com)
+[Link](https://docs.google.com/presentation/d/1Zc7Wqtgwqg7rnF49a6jhU302ik8MC8m-V1GSxpQuoTY/edit?usp=sharing)
 
 ### Deploy
 [Link](https://github.com/aliciaurds/harry-potter-chamber-wizardryCode/deployments)
