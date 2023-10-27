@@ -24,7 +24,7 @@ const resetGame = () => {
   gameBoxNode.innerHTML = "";
   gameOverScreenNode.style.display = "none";
   initialScreenNode.style.display = "flex";
-  spellEnabled = false;
+ 
 };
 const spellEvent = () => {
   if (

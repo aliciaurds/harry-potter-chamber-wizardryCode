@@ -8,13 +8,13 @@ window.addEventListener("load", function () {
   shootBtn.addEventListener("click", playShootBtn);
 });
 
-let isSpacePressed = false; //la barra espaciadora me activaba el sonido
+let isSpacePressed = false; //para que la barra espaciadora no active sonido
 window.addEventListener("keydown", function (e) {
-  //controlador de eventListener al presionar una tecla (en este caso la barra espaciadora me daba problemas con la reproduccion audio)
-  if (e.key === " ") {
-    e.preventDefault();
-    if (!isSpaceBarDown) {
-      toggleSpellAudio();
+  //controlador de eventListener al presionar una tecla
+  if (e.key === " ") { //si es la tecla espacio
+    e.preventDefault(); //previene el comportamiento default
+    if (isSpacePressed) { 
+      playShootBtn();
       isSpacePressed = true; // Marcar que la barra espaciadora está presionada
     }
   }
@@ -26,7 +26,7 @@ window.addEventListener("keyup", function (e) {
   }
 });
 
-let audio = null;
+let audio = null; //controlar reproduccion --> para que variable se inicialice como null (en el inicio el audio aun no se ha creado)
 let audioSpell = null;
 let audioLeviosa = null;
 
@@ -48,7 +48,7 @@ function stopAudio() {
     //verifica si existe
     audio.pause(); //lo pausa
     audio.currentTime = 0; //reinicia tiempo (propiedad audio.currentTime integrada)
-    playButton.addEventListener("click", playAudio); //vuelve a añador el evento
+    playButton.addEventListener("click", playAudio); //vuelve a añadir el evento
   }
 }
 function playShootBtn() {
@@ -57,7 +57,7 @@ function playShootBtn() {
     audioSpell.pause();
     audioSpell.currentTime = 0;
   } else {
-    audioSpell = new Audio("./Soundtrack/Expelliarmus.mp3"); //si no existe o no esta en pausa se reproduce ela audio
+    audioSpell = new Audio("./Soundtrack/Expelliarmus.mp3"); //si no existe o no esta en pausa se reproduce el audio
     audioSpell.volume = 0.1;
     audioSpell.play();
   }
@@ -65,8 +65,8 @@ function playShootBtn() {
 
 function playHermione() {
   if (audioLeviosa === null) {
-    audioLeviosa = new Audio("./Soundtrack/Leviosa.mp3"); // Ruta al segundo archivo de audio
-    audioLeviosa.volume = 0.1; // Ajusta el volumen según sea necesario
+    audioLeviosa = new Audio("./Soundtrack/Leviosa.mp3");
+    audioLeviosa.volume = 0.1;
   }
 
   audioLeviosa.play();
